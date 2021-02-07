@@ -3,7 +3,7 @@ const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require("body-parser");
 
-const endpoint = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/leaders.json?api_key=${REACT_APP_KEY}`
+const endpoint = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/leaders.json?api_key=${process.env.REACT_APP_KEY}`
 let port = process.env.PORT || 8080;
 
 
@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 
 app.get('/',(req,res)=>{
 
-  axios.get(endpoint).then(res=>console.log(res);)
+  axios.get(endpoint).then(res=>console.log(res));
   res.send('This is the base route!');
   res.json({ username: 'Flavio' });
   console.log('this is base route test');
