@@ -27,8 +27,8 @@ app.get('/',(req,res)=>{
 
   axios.get(endpoint).then(res=>{
 
-    console.log(res.data,'this is the Data');
-   console.log(res.data.catagories,'this is the categoreis!');
+    console.log(res.data,'this is the Data we want!');
+
 
   });
   res.send(`This is the base route and the time is ${dateTime}`);
