@@ -5,7 +5,10 @@ const bodyParser = require("body-parser");
 
 const endpoint = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/leaders.json?api_key=${process.env.REACT_APP_KEY}`
 let port = process.env.PORT || 8080;
-
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var dateTime = date+' '+time;
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
@@ -23,7 +26,7 @@ app.use(function(req, res, next) {
 app.get('/',(req,res)=>{
 
   axios.get(endpoint).then(res=>console.log(res));
-  res.send('This is the base route!');
+  res.send(`This is the base route and the time is ${dateTime}`);
   res.json({ username: 'Flavio' });
   console.log('this is base route test');
 });
