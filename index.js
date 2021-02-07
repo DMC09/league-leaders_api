@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
 
 app.get('/',(req,res)=>{
 
-  axios.get(endpoint).then(res=>console.log(res));
+  axios.get(endpoint).then(res=>console.log(res.data) && console.log(res.data.catagories));
   res.send(`This is the base route and the time is ${dateTime}`);
   res.json({ username: 'Flavio' });
   console.log('this is base route test');
