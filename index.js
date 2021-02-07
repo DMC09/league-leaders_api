@@ -40,5 +40,4 @@ app.get('/',(req,res)=>{
 
 app.listen(port, () => {
   console.log(`example app is listenining port ${port}`);
-  console.log(process.env);
 });
