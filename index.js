@@ -33,7 +33,7 @@ app.get('/',async (req,res)=>{
     console.log(e);
   }
   res.send(`This is the base route and the time is ${dateTime}`);
-  res.json({ username: 'Flavio' });
+  res.json({ stats: data });
   console.log('this is base route test');
 });
 
