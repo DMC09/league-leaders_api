@@ -23,20 +23,16 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/',async (req,res)=>{
-console.log(dateTime);
-  try {
-    const response = await axios.get(endpoint)
-    const data = await response.data
-    console.log(dateTime);
-    console.log(data,'this is the data');
-  await res.json({ ...data })
-  } catch (error) {
-    //this will eventually be handled by your error handling middleware
-    console.log(error);
-  }
-});
+app.get('/',(req,res)=>{
 
+  axios.get(endpoint).then(res=>{
+    console.log(res.data,'this is the Data');
+
+  });
+  res.send(`This is the base route and the time is ${dateTime}`);
+  res.json({ username: 'Flavio' });
+  console.log('this is base route test');
+});
 
 
 app.listen(port, () => {
