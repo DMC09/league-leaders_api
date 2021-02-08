@@ -24,17 +24,16 @@ app.use(function(req, res, next) {
 });
 
 app.get('/',async (req,res)=>{
+
   try {
     const response = await axios.get(endpoint)
     const data = await response.data
-    console.log(data,'this is the data for the reseponse');
-  } catch (e) {
+    console.log(data,'this is the data');
+    res.json({ stats: data })
+  } catch (error) {
     //this will eventually be handled by your error handling middleware
-    console.log(e);
+    console.log(error);
   }
-  res.send(`This is the base route and the time is ${dateTime}`);
-  res.json({ stats: data });
-  console.log('this is base route test');
 });
 
 
