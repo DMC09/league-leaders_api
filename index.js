@@ -27,10 +27,10 @@ app.get('/',async (req,res)=>{
   try {
     const response = await axios.get(endpoint)
     const data = await response.data
-    console.log(data);
+    console.log(data,'this is the data for the reseponse');
   } catch (e) {
     //this will eventually be handled by your error handling middleware
-console.log(e);
+    console.log(e);
   }
   res.send(`This is the base route and the time is ${dateTime}`);
   res.json({ username: 'Flavio' });
