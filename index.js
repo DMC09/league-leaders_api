@@ -24,12 +24,13 @@ app.use(function(req, res, next) {
 });
 
 app.get('/',async (req,res)=>{
-
+console.log(dateTime);
   try {
     const response = await axios.get(endpoint)
     const data = await response.data
+    console.log(dateTime);
     console.log(data,'this is the data');
-  await res.json({ data })
+  await res.json({ ...data })
   } catch (error) {
     //this will eventually be handled by your error handling middleware
     console.log(error);
