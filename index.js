@@ -29,7 +29,7 @@ app.get('/',async (req,res)=>{
     const response = await axios.get(endpoint)
     const data = await response.data
     console.log(data,'this is the data');
-  await res.json({ stats: data })
+  await res.json({ data })
   } catch (error) {
     //this will eventually be handled by your error handling middleware
     console.log(error);
