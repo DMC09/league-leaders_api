@@ -23,15 +23,25 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/',(req,res)=>{
+app.get('/',async (req,res)=>{
+try{
+  const reponse = await axios.get(endpoint);
+  const bosu = await respons.data
+    res.json({ username: 'Flavio' });
+    res.json({ data: bosu });
 
-  axios.get(endpoint).then(res=>{
-    console.log(res.data,'this is the Data');
-  });
-  // res.send(`This is the base route and the time is ${dateTime}`);
-  res.json({ username: 'Flavio' });
-  console.log('this is base route test');
+} catch(e){
+  console.log(e);
+}
 });
+// app.get('/',(req,res)=>{
+//   axios.get(endpoint).then(res=>{
+//     console.log(res.data,'this is the Data');
+//   });
+//   // res.send(`This is the base route and the time is ${dateTime}`);
+//   res.json({ username: 'Flavio' });
+//   console.log('this is base route test');
+// });
 
 
 app.listen(port, () => {
