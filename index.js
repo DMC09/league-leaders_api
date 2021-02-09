@@ -27,7 +27,7 @@ app.get('/',async (req,res)=>{
 try{
   const response = await axios.get(endpoint);
   const bosu = await response.data
-    res.json({ username: 'Flavio' });
+    // res.json({ username: 'Flavio' });
     res.json({ data: bosu });
 
 } catch(e){
