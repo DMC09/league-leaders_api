@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
 
 app.get('/',async (req,res)=>{
 try{
-  const reponse = await axios.get(endpoint);
+  const response = await axios.get(endpoint);
   const bosu = await response.data
     res.json({ username: 'Flavio' });
     res.json({ data: bosu });
