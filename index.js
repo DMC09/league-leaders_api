@@ -3,7 +3,7 @@ const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require("body-parser");
 
-const endpoint = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/leaders.json?api_key=${process.env.REACT_APP_KEY}`
+const endpoint = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/leaders.json?api_key=${process.env.API_KEY}`
 let port = process.env.PORT || 8080;
 var today = new Date();
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
