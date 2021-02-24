@@ -11,7 +11,7 @@ const endpoint = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/lea
 let port = process.env.PORT || 8080;
 let info;
 
-let DDATe = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
+
 
 // middleware
 app.use(bodyParser.urlencoded({extended:true}));
@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
 
 
 cron.schedule('* * * * *', function() {
-
+let DDATe = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
   console.log('running a task every minute');
   console.log(info,'this is the info read from the cron job');
   console.log(DDATe,'this is the date');
