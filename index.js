@@ -26,10 +26,10 @@ app.use(function(req, res, next) {
 });
 
 
-if (info === null) {
-  console.log("info data not present, proceeding to run the getApiData function ");
+
+
   getApiData();
-}
+
 // cron scheduleed every 6 hours to get new data or if data is null
 cron.schedule('0 */6 * * *', function() {
   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
