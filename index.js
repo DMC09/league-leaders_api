@@ -32,7 +32,7 @@ cron.schedule('0 */6 * * *', function() {
   console.log('CronJob Task running at ' + date);
   console.log(info,'this is the info read from the cron job');
 });
-cron.schedule('*/1 * * * *', function() {
+cron.schedule('* * * * *', function() {
   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
   console.log(info,'this is the info read from the cron job that is run every minute .');
 });
