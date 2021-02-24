@@ -9,7 +9,7 @@ const app = express();
 // Variable declartion
 const endpoint = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/leaders.json?api_key=${process.env.API_KEY}`
 let port = process.env.PORT || 8080;
-
+let info;
 // middleware
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -28,6 +28,7 @@ app.use(function(req, res, next) {
 
 cron.schedule('* * * * *', function() {
   console.log('running a task every minute');
+  console.log(info,'this is the info read from the cron job');
 });
 
 //main endpoint.
@@ -35,8 +36,8 @@ app.get('/',async (req,res)=>{
 try{
   const response = await axios.get(endpoint);
   const info = await response.data
-  console.log(info);
-  console.log('this is a test~!!');
+  console.log(info,'this is the info when I hit the endpoint');
+
     // res.json({ username: 'Flavio' });
     res.json({ data: info });
 
