@@ -11,8 +11,6 @@ const endpoint = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/lea
 let port = process.env.PORT || 8080;
 let info;
 
-
-
 // middleware
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -27,28 +25,37 @@ app.use(function(req, res, next) {
     next();
 });
 
-
-
-cron.schedule('* * * * *', function() {
-let DDATe = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
-  console.log('running a task every minute');
+// cron scheduleed every 6 hours to get new data or if data is null
+cron.schedule('0 */6 * * *', function() {
+  let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
+  getApiData();
+  console.log('CronJob Task running at ' + date);
   console.log(info,'this is the info read from the cron job');
-  console.log(DDATe,'this is the date');
 });
 
-//main endpoint.
-app.get('/',async (req,res)=>{
-try{
-  const response = await axios.get(endpoint);
-  const info = await response.data
-  console.log(info,'this is the info when I hit the endpoint');
-
-    // res.json({ username: 'Flavio' });
-    res.json({ data: info });
-
-} catch(e){
-  console.log(e);
+// function to get data
+async function getApiData() {
+  try{
+    const response = await axios.get(endpoint);
+    info = await response.data
+    console.log('Grabbing new API Stats');
+    let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
+    console.log('Api Date refreshed at' + date);
+  } catch(e){
+    console.log(e);
+  }
 }
+
+if (info === null) {
+  console.log("info data not present, proceeding to run the getApiData function ");
+  getApiData();
+}
+
+app.get('/',async (req,res)=>{
+
+  let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
+res.json({ data: info });
+console.log('the api Data is being request at ' + date);
 });
 
 
