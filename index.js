@@ -10,6 +10,8 @@ const app = express();
 const endpoint = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/leaders.json?api_key=${process.env.API_KEY}`
 let port = process.env.PORT || 8080;
 let info;
+
+let DDATe = new Date().toLocaleString()
 // middleware
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -27,8 +29,10 @@ app.use(function(req, res, next) {
 
 
 cron.schedule('* * * * *', function() {
+
   console.log('running a task every minute');
   console.log(info,'this is the info read from the cron job');
+  console.log(DDATe,'this is the date');
 });
 
 //main endpoint.
