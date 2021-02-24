@@ -24,6 +24,11 @@ app.use(function(req, res, next) {
     next();
 });
 
+
+cron.schedule('* * * * *', function() {
+  console.log('running a task every minute');
+});
+
 //main endpoint.
 app.get('/',async (req,res)=>{
 try{
