@@ -11,7 +11,8 @@ const endpoint = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/lea
 let port = process.env.PORT || 8080;
 let info;
 
-let DDATe = new Date().toLocaleString()
+let DDATe = new Date().toLocaleString("en-US", { month: "short", timeZone: 'America/Chicago',hour12: true })
+
 // middleware
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
