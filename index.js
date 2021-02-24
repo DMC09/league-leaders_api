@@ -25,6 +25,7 @@ app.use(function(req, res, next) {
 });
 
 
+
 cron.schedule('* * * * *', function() {
   console.log('running a task every minute');
 });
@@ -34,6 +35,8 @@ app.get('/',async (req,res)=>{
 try{
   const response = await axios.get(endpoint);
   const info = await response.data
+  console.log(info);
+  console.log('this is a test~!!');
     // res.json({ username: 'Flavio' });
     res.json({ data: info });
 
