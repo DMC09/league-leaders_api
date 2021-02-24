@@ -25,6 +25,11 @@ app.use(function(req, res, next) {
     next();
 });
 
+
+if (info === null) {
+  console.log("info data not present, proceeding to run the getApiData function ");
+  getApiData();
+}
 // cron scheduleed every 6 hours to get new data or if data is null
 cron.schedule('0 */6 * * *', function() {
   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
@@ -32,6 +37,8 @@ cron.schedule('0 */6 * * *', function() {
   console.log('CronJob Task running at ' + date);
   console.log(info,'this is the info read from the cron job');
 });
+
+// cron scheduleed every minute
 cron.schedule('* * * * *', function() {
   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
   console.log(info,'this is the info read from the cron job that is run every minute .');
@@ -55,13 +62,11 @@ async function getApiData() {
 
 
 app.get('/',async (req,res)=>{
-  if (info === null) {
-    console.log("info data not present, proceeding to run the getApiData function ");
-    getApiData();
-  }
+
   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
 res.json({ data: info });
 console.log('the api Data is being request at ' + date);
+console.log(info + date);
 });
 
 
