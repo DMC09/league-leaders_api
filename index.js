@@ -25,10 +25,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-
-
-
-  getApiData();
+getApiData();
 
 // cron scheduleed every 6 hours to get new data or if data is null
 cron.schedule('0 */6 * * *', function() {
@@ -39,18 +36,16 @@ cron.schedule('0 */6 * * *', function() {
 });
 
 // cron scheduleed every minute
-cron.schedule('* * * * *', function() {
-  let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
-  console.log(info,'this is the info read from the cron job that is run every minute .');
-});
+// cron.schedule('* * * * *', function() {
+//   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
+//   console.log(info,'this is the info read from the cron job that is run every minute .');
+// });
 
 // function to get data
 async function getApiData() {
   try{
-    console.log(info, 'before getting the data');
     const response = await axios.get(endpoint);
-    info = await response.data
-    console.log(info, 'after getting the datat');
+    info = await response.data;
     console.log('Grabbing new API Stats');
     let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
     console.log('Api Date refreshed at' + date);
@@ -66,7 +61,6 @@ app.get('/',async (req,res)=>{
   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
 res.json({ data: info });
 console.log('the api Data is being request at ' + date);
-console.log(info + date);
 });
 
 
