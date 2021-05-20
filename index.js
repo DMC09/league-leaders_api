@@ -7,10 +7,12 @@ const cron = require('node-cron');
 const app = express();
 
 // Variable declartions
-const statAPI = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/leaders.json?api_key=${process.env.API_KEY}`
+const regularSznAPI = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/leaders.json?api_key=${process.env.API_KEY}`
+const playoffsAPI = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/PST/leaders.json?api_key=${process.env.API_KEY}`
 const headshotAPI = `http://data.nba.net/data/10s/prod/v1/2020/players.json`
 let port = process.env.PORT || 8080;
 let regularSznData;
+let playoffsData;
 let headshots;
 
 // middleware
@@ -42,7 +44,7 @@ cron.schedule('0 */6 * * *', function() {
 // function to get data
 async function getRegularSznData() {
   try{
-    const response = await axios.get(statAPI);
+    const response = await axios.get(regularSznAPI);
     regularSznData = await response.data;
     console.log('Grabbing new API Stats');
     let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
