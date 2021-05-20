@@ -45,6 +45,17 @@ cron.schedule('0 */6 * * *', function() {
 async function getRegularSznData() {
   try{
     const response = await axios.get(regularSznAPI);
+    playoffsData = await response.data;
+    console.log('Grabbing new API Stats');
+    let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
+    console.log('Api Date refreshed at' + date);
+  } catch(e){
+    console.log(e);
+  }
+}
+async function getPlayoffsData() {
+  try{
+    const response = await axios.get(playoffsAPI);
     regularSznData = await response.data;
     console.log('Grabbing new API Stats');
     let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
