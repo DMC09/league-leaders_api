@@ -84,7 +84,6 @@ app.get('/',async (req,res)=>{
 res.json({ data: regularSznData });
 console.log('the api Data is being request at ' + date);
 });
-
 app.get('/headshot',async (req,res)=>{
 
   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
@@ -92,9 +91,8 @@ res.json({ data: headshots });
 console.log('headshot data requested at  ' + date);
 });
 app.get('/playoffs',async (req,res)=>{
-
   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
-res.json({ data: headshots });
+res.json({ data: playoffsData });
 console.log('playoff data  requested at  ' + date);
 });
 
