@@ -100,7 +100,7 @@ app.get("/regular", async (req, res) => {
     hour12: true,
   });
   res.json({ data: regularSznData });
-  console.log("the api Data is being request at " + date);
+  console.log("Regular season Data is being request at " + date);
 });
 // Headshots route.
 app.get("/headshot", async (req, res) => {
@@ -109,7 +109,7 @@ app.get("/headshot", async (req, res) => {
     hour12: true,
   });
   res.json({ data: headshots });
-  console.log("headshot data requested at  " + date);
+  console.log("Headshot data requested at  " + date);
 });
 // Playoffs  route.
 app.get("/playoffs", async (req, res) => {
@@ -118,7 +118,7 @@ app.get("/playoffs", async (req, res) => {
     hour12: true,
   });
   res.json({ data: playoffsData });
-  console.log("playoff data  requested at  " + date);
+  console.log("Playoff data  requested at  " + date);
 });
 
 app.listen(port, () => {
