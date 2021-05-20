@@ -6,11 +6,11 @@ const bodyParser = require("body-parser");
 const cron = require('node-cron');
 const app = express();
 
-// Variable declartion
+// Variable declartions
 const statAPI = `https://api.sportradar.us/nba/trial/v7/en/seasons/2020/REG/leaders.json?api_key=${process.env.API_KEY}`
 const headshotAPI = `http://data.nba.net/data/10s/prod/v1/2020/players.json`
 let port = process.env.PORT || 8080;
-let info;
+let regularSznData;
 let headshots;
 
 // middleware
@@ -27,23 +27,23 @@ app.use(function(req, res, next) {
     next();
 });
 // initialize the data
-getApiData();
+getRegularSznData();
 getHeadshotData();
 // cron scheduleed every 6 hours to get new data or if data is null
 cron.schedule('0 */6 * * *', function() {
   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
-  getApiData();
+  getRegularSznData();
   console.log('CronJob Task running at ' + date);
-  console.log(info,'this is the info read from the cron job');
+  console.log(regularSznData,'this is the regularSznData read from the cron job');
 });
 
 
 
 // function to get data
-async function getApiData() {
+async function getRegularSznData() {
   try{
     const response = await axios.get(statAPI);
-    info = await response.data;
+    regularSznData = await response.data;
     console.log('Grabbing new API Stats');
     let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
     console.log('Api Date refreshed at' + date);
@@ -68,7 +68,7 @@ async function getHeadshotData() {
 app.get('/',async (req,res)=>{
 
   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
-res.json({ data: info });
+res.json({ data: regularSznData });
 console.log('the api Data is being request at ' + date);
 });
 
