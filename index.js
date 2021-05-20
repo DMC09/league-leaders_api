@@ -59,7 +59,7 @@ async function getRegularSznData() {
       timeZone: "America/Chicago",
       hour12: true,
     });
-    console.log("Api Date refreshed at" + date);
+    console.log("Regular season data refreshed at" + date);
   } catch (e) {
     console.log(e);
   }
@@ -67,13 +67,13 @@ async function getRegularSznData() {
 async function getPlayoffsData() {
   try {
     const response = await axios.get(playoffsAPI);
-    regularSznData = await response.data;
+    playoffsData = await response.data;
     console.log("Grabbing new API Stats");
     let date = new Date().toLocaleString("en-US", {
       timeZone: "America/Chicago",
       hour12: true,
     });
-    console.log("Api Date refreshed at" + date);
+    console.log("Playoffs Data refreshed at" + date);
   } catch (e) {
     console.log(e);
   }
