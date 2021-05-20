@@ -26,7 +26,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
     next();
 });
-
+// initialize the data
 getApiData();
 getHeadshotData();
 // cron scheduleed every 6 hours to get new data or if data is null
@@ -37,11 +37,7 @@ cron.schedule('0 */6 * * *', function() {
   console.log(info,'this is the info read from the cron job');
 });
 
-// cron scheduleed every minute
-// cron.schedule('* * * * *', function() {
-//   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
-//   console.log(info,'this is the info read from the cron job that is run every minute .');
-// });
+
 
 // function to get data
 async function getApiData() {
@@ -81,6 +77,12 @@ app.get('/headshot',async (req,res)=>{
   let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
 res.json({ data: headshots });
 console.log('headshot data requested at  ' + date);
+});
+app.get('/playoffs',async (req,res)=>{
+
+  let date = new Date().toLocaleString("en-US", { timeZone: 'America/Chicago',hour12: true })
+res.json({ data: headshots });
+console.log('playoff data  requested at  ' + date);
 });
 
 
