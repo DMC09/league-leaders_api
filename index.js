@@ -41,7 +41,7 @@ cron.schedule("0 */6 * * *", function () {
     timeZone: "America/Chicago",
     hour12: true,
   });
-  getRegularSznData();
+  getPlayoffsData();
   console.log("CronJob Task running at " + date);
   console.log(
     regularSznData,
