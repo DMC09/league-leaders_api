@@ -36,7 +36,7 @@ getRegularSznData();
 getHeadshotData();
 getPlayoffsData();
 // cron scheduled every 6 hours to get new data or if data is null
-cron.schedule("0 */6 * * *", function () {
+cron.schedule("0 0 * * *", function () {
   let date = new Date().toLocaleString("en-US", {
     timeZone: "America/Chicago",
     hour12: true,
@@ -61,7 +61,7 @@ async function getRegularSznData() {
     });
     console.log("Regular season data refreshed at" + date);
   } catch (e) {
-    console.log(e);
+    console.log(e,'Unable to retreive the regular season data');
   }
 }
 async function getPlayoffsData() {
@@ -75,7 +75,7 @@ async function getPlayoffsData() {
     });
     console.log("Playoffs Data refreshed at" + date);
   } catch (e) {
-    console.log(e);
+    console.log(e,'Unable to retreive the playoffs data');
   }
 }
 async function getHeadshotData() {
@@ -89,7 +89,7 @@ async function getHeadshotData() {
     });
     console.log("headshots retrieved at " + date);
   } catch (e) {
-    console.log(e);
+    console.log(e,'Unable to retreive the headshots data');
   }
 }
 
