@@ -31,6 +31,7 @@ app.use(function (req, res, next) {
   );
   next();
 });
+
 // initialize the data
 getRegularSznData();
 getPlayoffsData();
