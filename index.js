@@ -33,8 +33,8 @@ app.use(function (req, res, next) {
 });
 // initialize the data
 getRegularSznData();
-getHeadshotData();
 getPlayoffsData();
+getHeadshotData();
 // cron scheduled every 6 hours to get new data or if data is null
 cron.schedule("0 0 * * *", function () {
   let date = new Date().toLocaleString("en-US", {
@@ -43,39 +43,36 @@ cron.schedule("0 0 * * *", function () {
   });
   getPlayoffsData();
   console.log("CronJob Task running at " + date);
-  console.log(
-    regularSznData,
-    "this is the regularSznData read from the cron job"
-  );
+  console.log(playoffsData, "this is the playoffsData read from the cron job");
 });
 
 // function to get data
 async function getRegularSznData() {
   try {
     const response = await axios.get(regularSznAPI);
-    playoffsData = await response.data;
-    console.log("Grabbing new API Stats");
+    regularSznData = await response.data;
+    console.log("Grabbing new regular season API Stats");
     let date = new Date().toLocaleString("en-US", {
       timeZone: "America/Chicago",
       hour12: true,
     });
     console.log("Regular season data refreshed at" + date);
   } catch (e) {
-    console.log(e,'Unable to retreive the regular season data');
+    console.log(e, "Unable to retreive the regular season data");
   }
 }
 async function getPlayoffsData() {
   try {
     const response = await axios.get(playoffsAPI);
     playoffsData = await response.data;
-    console.log("Grabbing new API Stats");
+    console.log("Grabbing new Playoff API Stats");
     let date = new Date().toLocaleString("en-US", {
       timeZone: "America/Chicago",
       hour12: true,
     });
     console.log("Playoffs Data refreshed at" + date);
   } catch (e) {
-    console.log(e,'Unable to retreive the playoffs data');
+    console.log(e, "Unable to retreive the playoffs data");
   }
 }
 async function getHeadshotData() {
@@ -89,7 +86,7 @@ async function getHeadshotData() {
     });
     console.log("headshots retrieved at " + date);
   } catch (e) {
-    console.log(e,'Unable to retreive the headshots data');
+    console.log(e, "Unable to retreive the headshots data");
   }
 }
 
@@ -102,15 +99,6 @@ app.get("/regular", async (req, res) => {
   res.json({ data: regularSznData });
   console.log("Regular season Data is being request at " + date);
 });
-// Headshots route.
-app.get("/headshot", async (req, res) => {
-  let date = new Date().toLocaleString("en-US", {
-    timeZone: "America/Chicago",
-    hour12: true,
-  });
-  res.json({ data: headshots });
-  console.log("Headshot data requested at  " + date);
-});
 // Playoffs  route.
 app.get("/playoffs", async (req, res) => {
   let date = new Date().toLocaleString("en-US", {
@@ -119,6 +107,15 @@ app.get("/playoffs", async (req, res) => {
   });
   res.json({ data: playoffsData });
   console.log("Playoff data  requested at  " + date);
+});
+// Headshots route.
+app.get("/headshot", async (req, res) => {
+  let date = new Date().toLocaleString("en-US", {
+    timeZone: "America/Chicago",
+    hour12: true,
+  });
+  res.json({ data: headshots });
+  console.log("Headshot data requested at  " + date);
 });
 
 app.listen(port, () => {
