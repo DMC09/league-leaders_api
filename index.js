@@ -65,8 +65,9 @@ async function getRegularSznData() {
 async function getPlayoffsData() {
   try {
     const response = await axios.get(playoffsAPI);
+    console.log(reponse,'this is the reponse')
     playoffsData = await response.data;
-    console.log("Grabbing new Playoff API Stats");
+    console.log(playoffsData,'this isthe playoffs Data');
     let date = new Date().toLocaleString("en-US", {
       timeZone: "America/Chicago",
       hour12: true,
@@ -106,10 +107,8 @@ app.get("/playoffs", async (req, res) => {
     timeZone: "America/Chicago",
     hour12: true,
   });
-  console.log(res.json())
-
   res.json({ data: playoffsData });
-  // console.log("Playoff data  requested at  " + date);
+  console.log("Playoff data  requested at  " + date);
 });
 // Headshots route.
 app.get("/headshot", async (req, res) => {
