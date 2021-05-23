@@ -111,6 +111,7 @@ app.get("/playoffs", async (req, res) => {
 });
 // Headshots route.
 app.get("/headshot", async (req, res) => {
+  console.log(res.json())
   let date = new Date().toLocaleString("en-US", {
     timeZone: "America/Chicago",
     hour12: true,
