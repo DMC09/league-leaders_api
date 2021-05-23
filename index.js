@@ -103,6 +103,8 @@ app.get("/regular", async (req, res) => {
 // Playoffs  route.
 app.get("/playoffs", async (req, res) => {
   let date = new Date().toLocaleString("en-US", {
+    console.log(res.json())
+    
     timeZone: "America/Chicago",
     hour12: true,
   });
