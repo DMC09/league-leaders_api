@@ -103,17 +103,16 @@ app.get("/regular", async (req, res) => {
 // Playoffs  route.
 app.get("/playoffs", async (req, res) => {
   let date = new Date().toLocaleString("en-US", {
-    console.log(res.json())
-    
     timeZone: "America/Chicago",
     hour12: true,
   });
+  console.log(res.json())
+
   res.json({ data: playoffsData });
-  console.log("Playoff data  requested at  " + date);
+  // console.log("Playoff data  requested at  " + date);
 });
 // Headshots route.
 app.get("/headshot", async (req, res) => {
-  console.log(res.json())
   let date = new Date().toLocaleString("en-US", {
     timeZone: "America/Chicago",
     hour12: true,
