@@ -65,7 +65,7 @@ async function getRegularSznData() {
 async function getPlayoffsData() {
   try {
     const response = await axios.get(playoffsAPI);
-    console.log(reponse,'this is the reponse')
+    console.log(response,'this is the reponse')
     playoffsData = await response.data;
     console.log(playoffsData,'this isthe playoffs Data');
     let date = new Date().toLocaleString("en-US", {
