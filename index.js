@@ -33,8 +33,8 @@ app.use(function (req, res, next) {
 });
 
 // initialize the data
-getRegularSznData();
 getPlayoffsData();
+getRegularSznData();
 getHeadshotData();
 // cron scheduled every 6 hours to get new data or if data is null
 cron.schedule("0 0 * * *", function () {
@@ -86,7 +86,7 @@ async function getHeadshotData() {
       timeZone: "America/Chicago",
       hour12: true,
     });
-    console.log("headshots retrieved at " + date);
+    // console.log("headshots retrieved at " + date);
   } catch (e) {
     console.log(e, "Unable to retreive the headshots data");
   }
