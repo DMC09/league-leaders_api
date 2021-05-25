@@ -33,8 +33,8 @@ app.use(function (req, res, next) {
 });
 
 // initialize the data
-getPlayoffsData();
 getRegularSznData();
+setTimeout(function(){ getPlayoffsData(); }, 3000);
 getHeadshotData();
 // cron scheduled every 6 hours to get new data or if data is null
 cron.schedule("0 0 * * *", function () {
